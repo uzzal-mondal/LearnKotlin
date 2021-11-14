@@ -1,0 +1,110 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+}
+apply plugin: 'kotlin-android'
+
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "com.cricketscoreapp"
+        minSdkVersion 24
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    allprojects {
+        repositories {
+            maven { url "https://jitpack.io" }
+            jcenter()
+            google()
+        }
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    //firebase.
+    implementation 'com.google.firebase:firebase-auth:20.0.4'
+    implementation 'com.google.firebase:firebase-analytics:18.0.3'
+    implementation 'com.google.firebase:firebase-database:19.7.0'
+    implementation 'com.google.firebase:firebase-storage:19.2.2'
+
+    //email firebase
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:27.1.0')
+    implementation 'com.google.android.gms:play-services-auth:19.2.0'
+
+    //noinspection GradleDynamicVersion
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    compileOnly 'com.google.android.wearable:wearable:2.8.1'
+    implementation "androidx.core:core-ktx:+"
+
+    //noinspection DifferentStdlibGradleVersion
+    // implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk:1.4.32"
+
+    // ext.kotlin_version = ‘1.3.21’
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // MultiDex
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    //room
+    implementation "androidx.room:room-runtime:2.2.6"
+    annotationProcessor "androidx.room:room-compiler:2.2.6"
+    implementation('dev.doubledot.doki:library:0.0.1@aar') {
+        transitive = true
+    }
+    // Stylish toast message
+    implementation 'com.github.GrenderG:Toasty:1.3.0'
+    // Timber (Replacement of log)
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+//networking
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.8.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.8.0'
+    implementation 'com.github.d-max:spots-dialog:1.1@aar'
+
+    //new
+    implementation 'com.jakewharton:butterknife:10.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
+
+    //alert dialog design library
+    // Material Dialog Library
+    implementation 'dev.shreyaspatil.MaterialDialog:MaterialDialog:2.2.2'
+    // Material Design Library
+    //implementation 'com.google.android.material:material:1.0.0'
+    // Lottie Animation Library
+   // implementation 'com.airbnb.android:lottie:3.3.6'
+  //  implementation 'com.github.moisoni97:google-inapp-billing:1.0.5'
+}
+repositories {
+    maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+    mavenCentral()
+}

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "819510735047",
+    "project_id": "cricketscoreapp-9e59f",
+    "storage_bucket": "cricketscoreapp-9e59f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:819510735047:android:cc2f41d38c337d0eac0ee2",
+        "android_client_info": {
+          "package_name": "com.cricketscoreapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "819510735047-9l0a4odrg61ekab58e0q0hv7iqvqkv0q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXu9EOeiJGpH2VHNk0Wtndz9qosrd6q7E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "819510735047-9l0a4odrg61ekab58e0q0hv7iqvqkv0q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

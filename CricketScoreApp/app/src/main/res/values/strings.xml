@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">CricketScoreApp</string>
+    <string name="base_url">https://c4daie6tc2.execute-api.us-west-2.amazonaws.com/production/awscloudpractitionerquestions/</string>
+</resources>
