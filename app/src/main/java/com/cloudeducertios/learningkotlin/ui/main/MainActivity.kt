@@ -1,82 +1,77 @@
 package com.cloudeducertios.learningkotlin.ui.main
 
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.cloudeducertios.learningkotlin.databinding.ActivityMainBinding
 import com.cloudeducertios.learningkotlin.databinding.ActivityMainBinding.inflate
+import com.cloudeducertios.learningkotlin.ui.main.model.Employee
+import com.cloudeducertios.learningkotlin.ui.main.model.EmployeeDetailsActivity
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    private val TAG = "Lifecycle"
-    private var count = 0;
+    lateinit var defaultDesignation: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = inflate(layoutInflater)
         setContentView(binding.root)
+        showEmployeeData()
+        showDesignationList()
 
-        if (savedInstanceState != null) {
-            count = savedInstanceState.getInt("key")
-        }
-        binding.textCount.text = count.toString()
-        Log.e(TAG, "On Create call")
-
-        gameScore()
-    }
-
-    /**
-     * this method tell us
-     * any value save to the bundle...
-     */
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putInt("key", count)
-        super.onSaveInstanceState(outState)
 
     }
 
-
-    override fun onStart() {
-        super.onStart()
-        Log.e(TAG, "On start call.")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.e(TAG, "On resume call.")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.e(TAG, "On pause call.")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.e(TAG, "On stop call.")
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        Log.e(TAG, "On restart call.")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.e(TAG, "On destroy call.")
-    }
-
-    private fun gameScore() {
+    private fun showEmployeeData() {
         binding.btnClick.setOnClickListener {
-            count++
-            Toast.makeText(this, "click", Toast.LENGTH_SHORT).show()
-            binding.textCount.text = count.toString()
+
+            var name = binding.etName.text.toString()
+            var address = binding.etAddress.text.toString()
+            var number = binding.etNumber.text.toString()
+            val employee = Employee(name = name, address = address, number = number, designation = defaultDesignation)
+
+            if (name.isEmpty() || address.isEmpty() || number.isEmpty()) {
+                Toast.makeText(this, "please, all fill-up reg form.", Toast.LENGTH_SHORT).show()
+            } else {
+                val intent = Intent(this, EmployeeDetailsActivity::class.java)
+                /* intent.putExtra("name", name)
+                 intent.putExtra("address", address)
+                 intent.putExtra("phn", number)*/
+                intent.putExtra("employee", employee)
+                startActivity(intent)
+            }
         }
+    }
 
+    public fun showDesignationList() {
+        val listAdapter: ArrayAdapter<String> = ArrayAdapter(
+            this, android.R.layout.simple_spinner_dropdown_item,
+            generateEmployeeList()
+        )
+        binding.desiginationSp.adapter = listAdapter
 
+        binding.desiginationSp.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    defaultDesignation =  parent?.getItemAtPosition(position).toString()
+
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+
+                }
+
+            }
     }
 }
 
