@@ -23,8 +23,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         showEmployeeData()
         showDesignationList()
-
-
     }
 
     private fun showEmployeeData() {
@@ -33,7 +31,12 @@ class MainActivity : AppCompatActivity() {
             var name = binding.etName.text.toString()
             var address = binding.etAddress.text.toString()
             var number = binding.etNumber.text.toString()
-            val employee = Employee(name = name, address = address, number = number, designation = defaultDesignation)
+            val employee = Employee(
+                name = name,
+                address = address,
+                number = number,
+                designation = defaultDesignation
+            )
 
             if (name.isEmpty() || address.isEmpty() || number.isEmpty()) {
                 Toast.makeText(this, "please, all fill-up reg form.", Toast.LENGTH_SHORT).show()
@@ -48,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    public fun showDesignationList() {
+    private fun showDesignationList() {
         val listAdapter: ArrayAdapter<String> = ArrayAdapter(
             this, android.R.layout.simple_spinner_dropdown_item,
             generateEmployeeList()
@@ -63,11 +66,12 @@ class MainActivity : AppCompatActivity() {
                     position: Int,
                     id: Long
                 ) {
-                    defaultDesignation =  parent?.getItemAtPosition(position).toString()
+                    defaultDesignation = parent?.getItemAtPosition(position).toString()
 
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
+                    Toast.makeText(this@MainActivity, "nothing selcted", Toast.LENGTH_SHORT).show()
 
                 }
 
